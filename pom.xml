@@ -13,12 +13,14 @@
 	<artifactId>card</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ms-rpe-card</name>
-	<description>Microserviço de cartoes</description>
+	<description>Microserviço/listener de cartoes</description>
 	<properties>
 		<java.version>17</java.version>
 		<mapstruct.version>1.5.5.Final</mapstruct.version>
 		<lombok.version>1.18.28</lombok.version>
 		<lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
+		<sqs.version>3.2.0</sqs.version>
+		<openfeign.version>4.1.3</openfeign.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -78,13 +80,18 @@
 			<artifactId>commons-lang3</artifactId>
 		</dependency>
 	    <dependency>
-	        <groupId>software.amazon.awssdk</groupId>
-	        <artifactId>sqs</artifactId>
-	        <version>2.20.5</version>
-	    </dependency>
-	    <dependency>
 	        <groupId>com.fasterxml.jackson.core</groupId>
 	        <artifactId>jackson-databind</artifactId> 
+	    </dependency>
+	    <dependency>
+		    <groupId>io.awspring.cloud</groupId>
+		    <artifactId>spring-cloud-aws-starter-sqs</artifactId>
+		    <version>${sqs.version}</version>
+		</dependency>
+		<dependency>
+	        <groupId>org.springframework.cloud</groupId>
+	        <artifactId>spring-cloud-starter-openfeign</artifactId>
+	        <version>${openfeign.version}</version>
 	    </dependency>
 		</dependencies>
 
