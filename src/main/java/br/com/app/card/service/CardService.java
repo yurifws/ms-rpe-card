@@ -5,11 +5,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.app.card.mapper.CardMapper;
 import br.com.app.card.model.CardRequestModel;
-import br.com.app.card.model.CardResponseModel;
 import br.com.app.card.model.ProductResponseModel;
 import br.com.app.card.repository.CardRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class CardService implements ICardService {
@@ -19,12 +20,13 @@ public class CardService implements ICardService {
 
 	@Transactional
 	@Override
-	public CardResponseModel insert(CardRequestModel cardRequestModel) {
+	public void insert(CardRequestModel cardRequestModel) {
 		
 		validateIfFindProductById(cardRequestModel);
 		
-		return CardMapper.INSTANCE.toResponseModel(
-				cardRepository.save(CardMapper.INSTANCE.toEntity(cardRequestModel)));
+		cardRepository.save(CardMapper.INSTANCE.toEntity(cardRequestModel));
+		
+		log.info("Cadastro de cartão realizado com sucesso!");
 	}
 
 	private ProductResponseModel validateIfFindProductById(CardRequestModel cardRequestModel) {

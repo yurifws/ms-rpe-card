@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.app.card.exception.ReadMessageException;
 import br.com.app.card.model.CardRequestModel;
-import br.com.app.card.service.CardService;
+import br.com.app.card.service.ICardService;
 import io.awspring.cloud.messaging.listener.annotation.SqsListener;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class CardListener {
 	
-	private final CardService cardService;
+	private final ICardService cardService;
 	
 	@SqsListener("${spring.cloud.aws.sqs.queue.name}")
 	public void onMessage(String message) {

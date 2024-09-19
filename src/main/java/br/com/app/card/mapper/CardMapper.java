@@ -1,7 +1,5 @@
 package br.com.app.card.mapper;
 
-import java.util.List;
-
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.NullValueMappingStrategy;
@@ -21,8 +19,6 @@ public interface CardMapper {
 	CardEntity toEntity(CardRequestModel cardRequestModel);
 	
 	CardResponseModel toResponseModel(CardEntity cardEntity);
-
-	List<CardResponseModel> toListResponseModel(List<CardEntity> cardEntities);
 	
 }
 
