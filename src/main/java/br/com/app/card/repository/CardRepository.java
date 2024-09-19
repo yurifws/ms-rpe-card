@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import br.com.app.card.entity.CardEntity;
 
-public interface CardRepository {
+@Repository
+public interface CardRepository extends JpaRepository<CardEntity, Long>{
 
 }
