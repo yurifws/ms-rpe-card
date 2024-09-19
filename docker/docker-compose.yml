@@ -1,4 +1,4 @@
-version: "3.7"
+version: "3.8"
 
 services:
   postgres:
@@ -15,35 +15,22 @@ services:
       - ./scripts:/docker-entrypoint-initdb.d
   localstack:
     image: localstack/localstack:latest
-    container_name: localstack
-    ports:
-      - "4566:4566"
+    container_name: localstack-container
     environment:
       - SERVICES=sqs
-      - DEBUG=1
-      - DATA_DIR=/tmp/localstack/data
-      - DEFAULT_REGION=us-east-1
+      - AWS_DEFAULT_REGION=us-east-1
+    ports:
+      - "4566:4566"
     volumes:
-      - "./localstack:/tmp/localstack"
-    healthcheck:
-      test: "curl -f http://localhost:4566/_localstack/health || exit 1"
-      interval: 5s
-      retries: 20
-      start_period: 5s
-
-  sqs-setup:
+      - "./localstack_data:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+  aws-cli:
     image: amazon/aws-cli:latest
-    depends_on:
-      localstack:
-        condition: service_healthy
+    container_name: aws-cli-container
+    entrypoint: ["/bin/sh", "-c", "until aws --endpoint-url=http://localstack-container:4566 sqs create-queue --queue-name queue-card; do sleep 2; done"]
     environment:
       - AWS_ACCESS_KEY_ID=accessKey
       - AWS_SECRET_ACCESS_KEY=secretKey
       - AWS_DEFAULT_REGION=us-east-1
-    command: >
-      sh -c "
-        echo 'Aguardando o LocalStack iniciar...';
-        sleep 10;
-        aws --endpoint-url=http://localstack:4566 sqs create-queue --queue-name queue-card;
-        echo 'Fila SQS criada com sucesso!';
-      "
+    depends_on:
+      - localstack

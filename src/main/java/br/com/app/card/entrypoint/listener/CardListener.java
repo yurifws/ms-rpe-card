@@ -16,7 +16,7 @@ public class CardListener {
 	
 	private final CardService cardService;
 	
-	@SqsListener("${cloud.aws.sqs.queue.name}")
+	@SqsListener("${spring.cloud.aws.sqs.queue.name}")
 	public void onMessage(String message) {
 		ObjectMapper objectMapper = new ObjectMapper();
 		try {
