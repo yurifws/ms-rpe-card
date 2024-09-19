@@ -14,7 +14,7 @@ public class CardResponseModel {
 
     private String password;
 
-    private StatusEnum cardStatus;
+    private StatusEnum status;
 
     private String holderName;
 

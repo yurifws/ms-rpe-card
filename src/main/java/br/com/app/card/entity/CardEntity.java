@@ -34,7 +34,7 @@ public class CardEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "card_status")
-    private StatusEnum cardStatus;
+    private StatusEnum status;
 
     @Column(name = "card_holder_name")
     private String holderName;
