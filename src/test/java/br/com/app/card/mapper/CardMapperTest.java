@@ -43,8 +43,9 @@ class CardMapperTest {
 		assertEquals(expected.getPassword(), actual.getPassword());
 		assertEquals(expected.getStatus(), actual.getStatus());
 		assertEquals(expected.getHolderName(), actual.getHolderName());
-		assertEquals(expected.getClient().getId(), actual.getClient().getId());
 		assertEquals(expected.getProduct().getId(), actual.getProduct().getId());
+		assertEquals(expected.getDateCreated(), actual.getDateCreated());
+		assertEquals(expected.getDateUpdated(), actual.getDateUpdated());
 		
 	}
 

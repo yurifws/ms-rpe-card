@@ -1,5 +1,7 @@
 package br.com.app.card.testdata;
 
+import java.time.LocalDateTime;
+
 import br.com.app.card.entity.CardEntity;
 import br.com.app.card.entity.ClientEntity;
 import br.com.app.card.entity.ProductEntity;
@@ -13,6 +15,8 @@ public class CardEntityTestData {
 		model.setPassword("password");
 		model.setStatus(StatusEnum.ATIVO);
 		model.setHolderName("holderName");
+		model.setDateCreated(LocalDateTime.of(2024, 11, 21, 1, 2, 3));
+		model.setDateUpdated(LocalDateTime.of(2023, 10, 20, 0, 5, 10));
 		model.setClient(getClientEntity());
 		model.setProduct(getProductEntity());
 		return model;
