@@ -36,6 +36,8 @@ class CardServiceTest {
 		Long productId =12345L;
 		ProductResponseModel productResponseModel = ProductResponseModelTestData.getProductResponseModel();
 		CardEntity cardEntity = CardEntityTestData.getCardEntity();
+		cardEntity.setDateCreated(null);
+		cardEntity.setDateUpdated(null);
 		
 		when(productService.getProductById(productId)).thenReturn(productResponseModel);
 		when(cardRepository.save(cardEntity)).thenReturn(cardEntity);
