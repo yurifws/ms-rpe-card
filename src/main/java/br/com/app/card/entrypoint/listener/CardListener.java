@@ -18,13 +18,24 @@ public class CardListener {
 	
 	private final ICardService cardService;
 	
+	private volatile boolean keepProcessing = true;
+
+	public void stopProcessing(String message) {
+		log.info("Registro de fila parado! {}");
+	    keepProcessing = false;
+	}
+	
 	@SqsListener("${spring.cloud.aws.sqs.queue.name}")
 	public void onMessage(String message) {
 		ObjectMapper objectMapper = new ObjectMapper();
 		try {
+			if (!keepProcessing) {
+	            return; 
+	        }
 			log.info("Mesagem recebida com sucesso! {}", message);
 			cardService.insert(objectMapper.readValue(message, CardRequestModel.class));
 		}catch (Exception ex) {
+			stopProcessing(message);
 			throw new ReadMessageException(ex);
 		}
 	}

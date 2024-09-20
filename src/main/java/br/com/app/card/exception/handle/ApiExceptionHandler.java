@@ -207,6 +207,8 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 					.title((String) body)
 					.message(DEFAULT_MESSAGE_ERROR).build();
 		}
+
+		log.error(ex.getMessage(), ex);
 		return super.handleExceptionInternal(ex, body, headers, status, request);
 	}	
 

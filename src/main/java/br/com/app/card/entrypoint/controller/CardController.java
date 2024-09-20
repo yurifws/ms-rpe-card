@@ -2,6 +2,8 @@ package br.com.app.card.entrypoint.controller;
 
 import static br.com.app.card.constants.RestConstants.PATH_CARDS;
 
+import java.util.List;
+
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +23,7 @@ public class CardController {
 	private final ICardService cardService;
 
 	@GetMapping
-	public ResponseEntity<CardResponseModel> findByClientId(@RequestParam Long clientId) {
+	public ResponseEntity<List<CardResponseModel>> findByClientId(@RequestParam Long clientId) {
 		return ResponseEntity.ok(cardService.findByClientId(clientId));
 	}
 }
