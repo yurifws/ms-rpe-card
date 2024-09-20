@@ -22,8 +22,6 @@ public class CardResponseModel {
 
     private LocalDateTime dateUpdated;
 
-    private ClientResponseModel client;
-
     private ProductResponseModel product;
 
 }

@@ -13,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import br.com.app.card.enuns.StatusEnum;
 import lombok.Data;
 
@@ -39,9 +42,11 @@ public class CardEntity {
     @Column(name = "card_holder_name")
     private String holderName;
 
+	@CreationTimestamp
     @Column(name = "card_date_created")
     private LocalDateTime dateCreated;
 
+	@UpdateTimestamp
     @Column(name = "card_date_updated")
     private LocalDateTime dateUpdated;
 

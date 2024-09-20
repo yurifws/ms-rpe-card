@@ -19,6 +19,6 @@ public interface CardMapper {
 	CardEntity toEntity(CardRequestModel cardRequestModel);
 	
 	CardResponseModel toResponseModel(CardEntity cardEntity);
-	
+
 }
 
